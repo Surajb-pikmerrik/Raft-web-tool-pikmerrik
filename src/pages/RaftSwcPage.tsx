@@ -86,8 +86,7 @@ const RaftSwcPage = () => {
       .join("\n")}\n</RAFSWC>`;
   }
 
-          // Generate AUTOSAR-compliant ARXML for RAFT_SWC
-          const arxmlContent = generateArxml(jsonData);
+  return (
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="mb-6 flex justify-end">
           <button
@@ -115,32 +114,6 @@ const RaftSwcPage = () => {
                         <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center animate-pulse flex-shrink-0">
                           <FileCode className="w-6 h-6 text-primary" />
                         </div>
-      function generateArxml(data: any[]): string {
-        return `<?xml version="1.0" encoding="utf-8"?>
-    <!--This file was ganerated using the RAFT-->
-    <AUTOSAR xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00044.xsd" xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <AR-PACKAGES>
-        <AR-PACKAGE>
-          <SHORT-NAME>ComponentTypes</SHORT-NAME>
-          <ELEMENTS>
-            <APPLICATION-SW-COMPONENT-TYPE>
-                const arxmlContent = generateArxml(jsonData); // This line will remain after moving the function
-              <INTERNAL-BEHAVIORS>
-                <SWC-INTERNAL-BEHAVIOR>
-                  <SHORT-NAME>RAFT_SWC_InternalBehavior</SHORT-NAME>
-                  <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>
-                </SWC-INTERNAL-BEHAVIOR>
-              </INTERNAL-BEHAVIORS>
-            </APPLICATION-SW-COMPONENT-TYPE>
-            <SWC-IMPLEMENTATION>
-              <SHORT-NAME>RAFT_SWC_Implementation</SHORT-NAME>
-              <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ComponentTypes/RAFT_SWC/RAFT_SWC_InternalBehavior</BEHAVIOR-REF>
-            </SWC-IMPLEMENTATION>
-          </ELEMENTS>
-        </AR-PACKAGE>
-      </AR-PACKAGES>
-    </AUTOSAR>`;
-      }
                         <div className="w-12 h-12 rounded-full bg-gradient-tech flex items-center justify-center shadow-tech flex-shrink-0">
                           <Upload className="w-6 h-6 text-white" />
                         </div>
@@ -152,12 +125,8 @@ const RaftSwcPage = () => {
                             Drag and drop or click to select • .xlsx or .xls files
                           </p>
                         </div>
-          // Place this function outside the RaftSwcPage component
-          function generateArxml(data: any[]): string {
-            return `<?xml version="1.0" encoding="utf-8"?>\n<!--This file was ganerated using the RAFT-->\n<AUTOSAR xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00044.xsd" xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n  <AR-PACKAGES>\n    <AR-PACKAGE>\n      <SHORT-NAME>ComponentTypes</SHORT-NAME>\n      <ELEMENTS>\n        <APPLICATION-SW-COMPONENT-TYPE>\n          <SHORT-NAME>RAFT_SWC</SHORT-NAME>\n          <INTERNAL-BEHAVIORS>\n            <SWC-INTERNAL-BEHAVIOR>\n              <SHORT-NAME>RAFT_SWC_InternalBehavior</SHORT-NAME>\n              <SUPPORTS-MULTIPLE-INSTANTIATION>false</SUPPORTS-MULTIPLE-INSTANTIATION>\n            </SWC-INTERNAL-BEHAVIOR>\n          </INTERNAL-BEHAVIORS>\n        </APPLICATION-SW-COMPONENT-TYPE>\n        <SWC-IMPLEMENTATION>\n          <SHORT-NAME>RAFT_SWC_Implementation</SHORT-NAME>\n          <BEHAVIOR-REF DEST="SWC-INTERNAL-BEHAVIOR">/ComponentTypes/RAFT_SWC/RAFT_SWC_InternalBehavior</BEHAVIOR-REF>\n        </SWC-IMPLEMENTATION>\n      </ELEMENTS>\n    </AR-PACKAGE>\n  </AR-PACKAGES>\n</AUTOSAR>`;
-          }
                       </>
-                    )}
+                    ) : null}
                   </div>
                   {file && !isProcessing && (
                     <div className="mt-4 text-center text-sm text-foreground">
@@ -177,7 +146,6 @@ const RaftSwcPage = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
